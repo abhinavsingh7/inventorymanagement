@@ -14,7 +14,7 @@ import com.inventory.model.User;
 public class UserService implements AppService<User> {
 	// in service we are doing mapping from model<->dto
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 
 	@Override
 	public Integer create(User t) throws Exception {
@@ -31,8 +31,9 @@ public class UserService implements AppService<User> {
 	@Override
 	public User getById(int id) throws Exception {
 		UserDto udto = userDao.getById(id);
-		return new User(udto.getUserId(), udto.getFirstName(), udto.getLasttName(), udto.getUsername(), udto.getPhone(),
-				udto.getPassword(), udto.getIsAdmin(), udto.getUserRoleId());
+		User user = new User(udto.getUserId(), udto.getFirstName(), udto.getLasttName(), udto.getUsername(),
+				udto.getPhone(), udto.getPassword(), udto.getIsAdmin(), udto.getUserRoleId());
+		return user;
 	}
 
 	@Override

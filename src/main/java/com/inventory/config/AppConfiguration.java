@@ -10,7 +10,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@PropertySource("classpath:application.properties")
 public class AppConfiguration {
 	
 	 @Autowired

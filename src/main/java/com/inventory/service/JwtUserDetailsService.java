@@ -35,7 +35,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),new ArrayList<>());
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				new ArrayList<>());
 
 	}
 
@@ -46,7 +47,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		newUser.setPhone(user.getPhone());
 		newUser.setFirstName(user.getFirstName());
 		newUser.setLasttName(user.getLasttName());
-		//default values to new user
+		// default values to new user
 		newUser.setIsAdmin("N");
 		newUser.setUserRoleId(2);
 		return userDao.create(newUser);

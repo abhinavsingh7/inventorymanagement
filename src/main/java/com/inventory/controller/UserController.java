@@ -18,7 +18,7 @@ import com.inventory.service.UserRoleService;
 import com.inventory.service.UserService;
 
 @RestController
-@RequestMapping(value = "/inventory/api")
+@RequestMapping("/inventory/api")
 public class UserController {
 
 	@Autowired

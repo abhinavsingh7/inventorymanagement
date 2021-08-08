@@ -41,13 +41,13 @@ public class UserDao implements AppDao<UserDto> {
 
 	@Override
 	public UserDto getById(int id) throws Exception {
-		String sql = "Select firstname,lastname,username,phone,isAdmin,userRole from app_user where userId=?";
+		String sql = "Select userId,firstname,lastname,username,phone,isAdmin,userRole from app_user where userId=?";
 		return (UserDto) dataSource.getJdbcTemplate().queryForObject(sql, new Object[] { id }, new UserRowMapper());
 	}
 
 	@Override
 	public List<UserDto> getAll() throws Exception {
-		String sql = "Select firstname,lastname,username,phone,isAdmin,userRole from app_user";
+		String sql = "Select userId,firstname,lastname,username,phone,isAdmin,userRole from app_user";
 		return dataSource.getJdbcTemplate().query(sql, new UserRowMapper());
 	}
 

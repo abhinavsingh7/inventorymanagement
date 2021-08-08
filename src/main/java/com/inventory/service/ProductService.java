@@ -15,7 +15,7 @@ import com.inventory.model.Product;
 public class ProductService implements AppService<Product> {
 
 	@Autowired
-	ProductDao prodDao;
+	private ProductDao prodDao;
 
 	@Override
 	public Integer create(Product p) throws Exception {
@@ -34,14 +34,16 @@ public class ProductService implements AppService<Product> {
 	@Override
 	public Product getById(int id) throws Exception {
 		ProductDto pdto = prodDao.getById(id);
-		return new Product(pdto.getId(), pdto.getProductName(), pdto.getProductLabel(), pdto.getInventoryReceive(),
-				pdto.getInventoryShipp(), pdto.getMinRequired(), pdto.getBarcode());
+		Product product = new Product(pdto.getId(), pdto.getProductName(), pdto.getProductLabel(),
+				pdto.getInventoryReceive(), pdto.getInventoryShipp(), pdto.getMinRequired(), pdto.getBarcode());
+		return product;
 	}
 
 	@Override
 	public List<Product> getAll() throws Exception {
-		List<Product> pList = prodDao
-				.getAll().stream().map(p -> new Product(p.getId(), p.getProductName(), p.getProductLabel(),
+		List<ProductDto> pdtoList = prodDao.getAll();
+		List<Product> pList = pdtoList
+				.stream().map(p -> new Product(p.getId(), p.getProductName(), p.getProductLabel(),
 						p.getInventoryReceive(), p.getInventoryShipp(), p.getMinRequired(), p.getBarcode()))
 				.collect(Collectors.toList());
 		return pList;
